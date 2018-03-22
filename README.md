@@ -39,3 +39,10 @@ get_format(subtitle) -> :srt
 subtitle = "Anything else..."
 get_format(subtitle) -> :unknown
 ```
+
+## Notes
+
+The current format detectors are quite dumb and will only match as follows:  
+
+**vtt** -> starts with WEBVTT
+**srt** -> starts with an optional newline, 1, and a trailing newline
