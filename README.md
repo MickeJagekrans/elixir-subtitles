@@ -1,6 +1,6 @@
 # Subtitles
 
-**This library converts between different subtitle formats**
+**This library provides several tools for manipulating and converting subtitles**
 
 ## Installation
 
@@ -19,3 +19,32 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/subtitles](https://hexdocs.pm/subtitles).
 
+## Usage
+
+This library only supports subtitles in UTF-8 format.  
+
+All functions convert all line endings to LF before operations are done.
+
+### Functions
+
+**get_format(subtitle)**
+
+Returns the subtitle format as an atom, defaults to `:unknown`
+
+```
+subtitle = "WEBVTT\n\n..."
+get_format(subtitle) -> :vtt
+
+subtitle = "1\r\n..."
+get_format(subtitle) -> :srt
+
+subtitle = "Anything else..."
+get_format(subtitle) -> :unknown
+```
+
+## Notes
+
+The current format detectors are quite dumb and will only match as follows:  
+
+**vtt** -> starts with WEBVTT
+**srt** -> starts with an optional newline, 1, and a trailing newline
