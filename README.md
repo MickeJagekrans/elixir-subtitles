@@ -21,15 +21,21 @@ be found at [https://hexdocs.pm/subtitles](https://hexdocs.pm/subtitles).
 
 ## Usage
 
+All functions convert all line endings to LF before operations are done.
+
 ### Functions
 
 **get_format(subtitle)**
-Returns the subtitle format as an atom, defaults to `:srt`
+
+Returns the subtitle format as an atom, defaults to `:unknown`
 
 ```
 subtitle = "WEBVTT\n\n..."
 get_format(subtitle) -> :vtt
 
-subtitle = "Anything else..."
+subtitle = "1\r\n..."
 get_format(subtitle) -> :srt
+
+subtitle = "Anything else..."
+get_format(subtitle) -> :unknown
 ```

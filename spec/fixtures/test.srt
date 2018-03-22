@@ -3,36 +3,20 @@
 Minioner.
 
 2
-00:01:42,040 --> 00:01:42,520
-&nbsp;
-
-3
 00:01:42,520 --> 00:01:46,280
 Minioner har funnits på planeten
 mycket längre än vi.
 
-4
-00:01:46,280 --> 00:01:46,800
-&nbsp;
-
-5
+3
 00:01:46,800 --> 00:01:51,040
 De har många olika namn.
 Dave, Carl, Paul, Mike.
 
-6
-00:01:51,040 --> 00:01:53,120
-&nbsp;
-
-7
+4
 00:01:53,120 --> 00:01:54,880
 Den där heter Norbert.
 
-8
-00:01:54,880 --> 00:01:55,800
-&nbsp;
-
-9
+5
 00:01:55,800 --> 00:01:57,200
 Han är en idiot.
 
