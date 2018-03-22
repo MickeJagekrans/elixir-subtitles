@@ -21,6 +21,8 @@ be found at [https://hexdocs.pm/subtitles](https://hexdocs.pm/subtitles).
 
 ## Usage
 
+This library only supports subtitles in UTF-8 format.  
+
 All functions convert all line endings to LF before operations are done.
 
 ### Functions
