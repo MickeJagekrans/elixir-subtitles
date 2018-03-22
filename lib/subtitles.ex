@@ -8,7 +8,7 @@ defmodule Subtitles do
   end
 
   defp is_vtt?(subtitle), do: subtitle |> String.starts_with?("WEBVTT")
-  defp is_srt?(subtitle), do: subtitle |> String.starts_with?("1\n")
+  defp is_srt?(subtitle), do: Regex.match?(~r/^\n?1\n/, subtitle)
 
   defp normalize_line_endings(subtitle), do: Regex.replace(~r/\r\n?/, subtitle, "\n")
 end

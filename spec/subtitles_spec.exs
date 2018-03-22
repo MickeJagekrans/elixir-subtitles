@@ -25,6 +25,12 @@ defmodule SubtitlesSpec do
       it do: should eq :srt
     end
 
+    context "given an srt with optional leading newline" do
+      let :sub, do: "\n1\n..."
+
+      it do: should eq :srt
+    end
+
     context "given any other string" do
       let :sub, do: "some random string not matching any other format"
 
