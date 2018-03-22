@@ -1,6 +1,6 @@
 # Subtitles
 
-**TODO: Add description**
+**This library converts between different subtitle formats**
 
 ## Installation
 
