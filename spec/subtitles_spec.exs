@@ -20,13 +20,13 @@ defmodule SubtitlesSpec do
     end
 
     context "given an srt with CRLF" do
-      let :sub, do: "1\r\n..."
+      let :sub, do: "1\r\n00:00:00,000 --> 00:00:01,000\nsome text.\n\n"
 
       it do: should eq :srt
     end
 
     context "given an srt with optional leading newline" do
-      let :sub, do: "\n1\n..."
+      let :sub, do: "\n1\n00:00:00,000 --> 00:00:01,000\nsome text.\n\n"
 
       it do: should eq :srt
     end
