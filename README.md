@@ -1,6 +1,6 @@
 # Subtitles
 
-**This library converts between different subtitle formats**
+**This library provides several tools for manipulating and converting subtitles**
 
 ## Installation
 
@@ -19,3 +19,17 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/subtitles](https://hexdocs.pm/subtitles).
 
+## Usage
+
+### Functions
+
+**get_format(subtitle)**
+Returns the subtitle format as an atom, defaults to `:srt`
+
+```
+subtitle = "WEBVTT\n\n..."
+get_format(subtitle) -> :vtt
+
+subtitle = "Anything else..."
+get_format(subtitle) -> :srt
+```
