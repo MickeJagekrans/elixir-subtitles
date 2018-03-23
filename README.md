@@ -46,5 +46,6 @@ get_format(subtitle) -> :unknown
 
 The current format detectors are quite dumb and will only match as follows:  
 
-**vtt** -> starts with WEBVTT
+**vtt** -> starts with WEBVTT  
+
 **srt** -> starts with a full cue
