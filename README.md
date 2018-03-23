@@ -27,20 +27,41 @@ All functions convert all line endings to LF before operations are done.
 
 ### Functions
 
-**get_format(subtitle)**
+#### Subtitles
+
+**Subtitles.get_format(subtitle)**
 
 Returns the subtitle format as an atom, defaults to `:unknown`
 
 ```
 subtitle = "WEBVTT\n\n..."
-get_format(subtitle) -> :vtt
+Subtitles.get_format(subtitle) # :vtt
 
 subtitle = "1\r\n..."
-get_format(subtitle) -> :srt
+Subtitles.get_format(subtitle) # :srt
 
 subtitle = "Anything else..."
-get_format(subtitle) -> :unknown
+Subtitles.get_format(subtitle) # :unknown
 ```
+
+#### Subtitles.SrtParser
+
+**Subtitles.SrtParser.parse(subtitle)**
+
+Returns a parsed list of all cues in the subtitle in the following format:
+
+```
+%Subtitle{
+  from: ~T[00:00:00.000], # cue from, Elixir Time
+  to: ~T[00:00:12.345],   # cue to, Elixir time
+  parts: [
+    %SubtitlePart{          # Cue data, one per line
+      text_data: "Cue text" # actual text of the cue
+    }
+  ]
+}
+```
+
 
 ## Notes
 

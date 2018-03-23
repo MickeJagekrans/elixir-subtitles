@@ -10,6 +10,6 @@ defmodule Subtitles.SrtParser do
   defp make_cue([_, timing|parts]) do
     [from, to] = timing |> String.split(" --> ")
 
-     %{from: from, to: to, parts: parts}
+    Subtitle.new(from, to, parts)
   end
 end
