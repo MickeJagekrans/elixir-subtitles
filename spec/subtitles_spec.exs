@@ -37,4 +37,70 @@ defmodule SubtitlesSpec do
       it do: should eq :unknown
     end
   end
+
+  describe "#parse/1" do
+    subject do: sub() |> Subtitles.parse()
+
+    before do
+      allow Subtitles.VttParser |> to(accept :parse, fn _ -> :vtt end)
+      allow Subtitles.SrtParser |> to(accept :parse, fn _ -> :srt end)
+    end
+
+    context "given a webvtt" do
+      let :sub, do: vtt()
+
+      it do
+        should eq {:ok, :vtt}
+        expect Subtitles.VttParser |> to(accepted :parse)
+      end
+    end
+
+    context "given an srt" do
+      let :sub, do: srt()
+
+      it do
+        should eq {:ok, :srt}
+        expect Subtitles.SrtParser |> to(accepted :parse)
+      end
+    end
+
+    context "given any other string" do
+      let :sub, do: "some other string"
+
+      it do: should eq {:error, "Unknown subtitle format"}
+    end
+  end
+
+  describe "#parse/2" do
+    subject do: "" |> Subtitles.parse(type())
+
+    before do
+      allow Subtitles.VttParser |> to(accept :parse, fn _ -> :vtt end)
+      allow Subtitles.SrtParser |> to(accept :parse, fn _ -> :srt end)
+    end
+
+    context "given :vtt" do
+      let :type, do: :vtt
+
+      it do
+        should eq {:ok, :vtt}
+        expect Subtitles.VttParser |> to(accepted :parse)
+      end
+    end
+
+    context "given :srt" do
+      let :type, do: :srt
+
+      it do
+        should eq {:ok, :srt}
+        expect Subtitles.SrtParser |> to(accepted :parse)
+      end
+    end
+
+    context "given :unknown" do
+      let :type, do: :unknown
+
+      it do: should eq {:error, "Unknown subtitle format"}
+    end
+  end
 end
