@@ -6,19 +6,19 @@ defmodule Subtitles.VttParser do
     subtitle
     |> String.split("\n\n", trim: true)
     |> filter_unsupported_blocks()
-    |> build_cues()
+    |> parse_cues()
   end
 
   defp filter_unsupported_blocks(blocks) do
     blocks |> Enum.reject(&String.starts_with?(&1, @unsupported_blocks))
   end
 
-  defp build_cues(blocks) do
+  defp parse_cues(blocks) do
     blocks |> Enum.map(fn block ->
       block
       |> String.split("\n")
       |> remove_cue_headers()
-      |> make_cue()
+      |> make_subtitle()
     end)
   end
 
@@ -26,7 +26,7 @@ defmodule Subtitles.VttParser do
     @time_pattern |> Regex.match?(first) && cue || rest
   end
 
-  defp make_cue([timings|parts]) do
+  defp make_subtitle([timings|parts]) do
     [[from], [to]|_] = @time_pattern |> Regex.scan(timings)
 
     Subtitle.new(from, to, parts |> remove_timestamps())
