@@ -85,6 +85,12 @@ Returns a parsed list of all cues in the subtitle in the following format:
 }
 ```
 
+#### Subtitles.SrtFormatter
+
+**Subtitles.SrtFormatter.format(subtitles)**
+
+Takes a list of `Subtitle` structs and returns an srt string
+
 ## Notes
 
 The current format detectors are quite dumb and will only match as follows:  
