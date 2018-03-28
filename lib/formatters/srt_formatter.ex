@@ -10,5 +10,11 @@ defmodule Subtitles.SrtFormatter do
     |> Enum.join("\n")
   end
 
-  defp format_time(time), do: time |> Time.to_string() |> String.replace(".", ",")
+  defp format_time(%Time{hour: h, minute: m, second: s, microsecond: {us, _}}) do
+    "#{pad(h)}:#{pad(m)}:#{pad(s)},#{format_microsecond(us)}"
+  end
+
+  defp pad(time), do: "#{time}" |> String.pad_leading(2, ["0"])
+
+  defp format_microsecond(us), do: "#{us}" |> String.pad_leading(6, ["0"]) |> String.slice(0..2)
 end
