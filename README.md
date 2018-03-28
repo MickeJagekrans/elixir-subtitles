@@ -40,13 +40,36 @@ Subtitles.get_format(subtitle) # :vtt
 subtitle = "1\r\n..."
 Subtitles.get_format(subtitle) # :srt
 
-subtitle = "Anything else..."
+subtitle = "Anything else"
 Subtitles.get_format(subtitle) # :unknown
 ```
 
-#### Subtitles.SrtParser
+**Subtitles.parse(subtitle)**
+
+Tries to figure out the format of the subtitle and then parse it  
+by using the correct parser, returning a tuple:
+
+```
+subtitle = "WEBVTT\n\n..."
+Subtitles.parse(subtitle) # {:ok, result}
+
+subtitle = "Anything else"
+Subtitles.parse(subtitle) # {:error, "Unknown subtitle format"}
+```
+
+**Subtitles.parse(subtitle, type)**
+
+Dispatches the subtitle to the parser of type `type` and returns a tuple (see above):
+
+```
+Subtitles.parse(sub, :vtt) == Subtitles.VttParser.parse(sub)
+Subtitles.parse(sub, :srt) == Subtitles.SrtParser.parse(sub)
+```
+
+#### Subtitles.SrtParser/Subtitles.VttParser
 
 **Subtitles.SrtParser.parse(subtitle)**
+**Subtitles.VttParser.parse(subtitle)**
 
 Returns a parsed list of all cues in the subtitle in the following format:
 
@@ -61,7 +84,6 @@ Returns a parsed list of all cues in the subtitle in the following format:
   ]
 }
 ```
-
 
 ## Notes
 
