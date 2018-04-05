@@ -4,7 +4,7 @@ defmodule Subtitles.VttParser do
 
   def parse(subtitle) do
     subtitle
-    |> String.split("\n\n", trim: true)
+    |> Utils.split_lines()
     |> filter_unsupported_blocks()
     |> parse_cues()
   end

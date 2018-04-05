@@ -42,5 +42,18 @@ defmodule Subtitles.VttParserSpec do
 
       it do: should eq expected()
     end
+
+    describe "crlf subtitle" do
+      let :sub, do: "WEBVTT\r\n\r\n00:00:00.000 --> 00:00:02.040\r\nThis is the sub text\r\n\r\n"
+      let :expected, do: [%Subtitle{
+        from: ~T[00:00:00.000],
+        to: ~T[00:00:02.040],
+        parts: [
+          %SubtitlePart{text_data: "This is the sub text"}
+        ]
+      }]
+
+      it do: should eq expected()
+    end
   end
 end

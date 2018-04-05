@@ -1,13 +1,11 @@
 defmodule Subtitles do
-  import Tools
-
   alias Subtitles.VttParser
   alias Subtitles.SrtParser
 
   @srt_cue_matcher ~r/\n?1\n(\d{2}:){2}\d{2},\d{3} --> (\d{2}:){2}\d{2},\d{3}(\n.+)+\n\n/
 
   def get_format(subtitle) do
-    subtitle = subtitle |> Tools.normalize_line_endings()
+    subtitle = subtitle |> Utils.normalize_line_endings()
 
     subtitle |> is_vtt?() && :vtt ||
     subtitle |> is_srt?() && :srt ||
