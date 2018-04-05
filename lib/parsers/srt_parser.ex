@@ -1,6 +1,11 @@
 defmodule Subtitles.SrtParser do
+  import Tools
+
   def parse(subtitle) do
-    subtitle |> String.split("\n\n", trim: true) |> Enum.map(&parse_cue/1)
+    subtitle
+    |> Tools.normalize_line_endings()
+    |> String.split("\n\n", trim: true)
+    |> Enum.map(&parse_cue/1)
   end
 
   defp parse_cue(cue), do: cue |> String.split("\n") |> make_subtitle()
