@@ -1,7 +1,5 @@
 defmodule Subtitles.SrtParser do
-  def parse(subtitle) do
-    subtitle |> String.split("\n\n", trim: true) |> Enum.map(&parse_cue/1)
-  end
+  def parse(subtitle), do: subtitle |> Utils.split_lines() |> Enum.map(&parse_cue/1)
 
   defp parse_cue(cue), do: cue |> String.split("\n") |> make_subtitle()
 
