@@ -91,6 +91,12 @@ Returns a parsed list of all cues in the subtitle in the following format:
 
 Takes a list of `Subtitle` structs and returns an srt string
 
+### Subtitles.VttFormatter
+
+**Subtitles.SrtFormatter.format(subtitles)**
+
+Takes a list of `Subtitle` structs and returns a vtt string  
+
 ## Notes
 
 The current format detectors are quite dumb and will only match as follows:  
