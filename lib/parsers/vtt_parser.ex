@@ -7,6 +7,7 @@ defmodule Subtitles.VttParser do
     |> Utils.split_lines()
     |> filter_unsupported_blocks()
     |> parse_cues()
+    |> Subtitle.new()
   end
 
   defp filter_unsupported_blocks(blocks) do
@@ -29,7 +30,7 @@ defmodule Subtitles.VttParser do
   defp make_subtitle([timings|parts]) do
     [[from], [to]|_] = @time_pattern |> Regex.scan(timings)
 
-    Subtitle.new(from, to, parts |> remove_timestamps())
+    Cue.new(from, to, parts |> remove_timestamps())
   end
 
   defp remove_timestamps(parts) do

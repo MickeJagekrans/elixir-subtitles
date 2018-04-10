@@ -1,6 +1,6 @@
 defmodule Subtitles.SrtFormatter do
-  def format(subtitles) do
-    subtitles
+  def format(%Subtitle{cues: cues}) do
+    cues
     |> Enum.with_index(1)
     |> Enum.map(&build(&1))
     |> Enum.join("\n\n")

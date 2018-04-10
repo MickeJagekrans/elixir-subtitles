@@ -1,7 +1,5 @@
 defmodule Subtitles.VttFormatter do
-  def format(subtitles) do
-    "WEBVTT\n\n" <> build_cues(subtitles)
-  end
+  def format(%Subtitle{cues: cues}), do: "WEBVTT\n\n" <> build_cues(cues)
 
   defp build_cues(sub) do
     sub
