@@ -25,6 +25,12 @@ This library only supports subtitles in UTF-8 format.
 
 All functions convert all line endings to LF before operations are done.
 
+### Tests
+
+Run tests:  
+
+`$ mix espec`
+
 ## Functions
 
 ### Subtitles
