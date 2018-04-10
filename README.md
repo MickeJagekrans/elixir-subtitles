@@ -25,9 +25,15 @@ This library only supports subtitles in UTF-8 format.
 
 All functions convert all line endings to LF before operations are done.
 
-### Functions
+### Tests
 
-#### Subtitles
+Run tests:  
+
+`$ mix espec`
+
+## Functions
+
+### Subtitles
 
 **Subtitles.get_format(subtitle)**
 
@@ -66,7 +72,7 @@ Subtitles.parse(sub, :vtt) == Subtitles.VttParser.parse(sub)
 Subtitles.parse(sub, :srt) == Subtitles.SrtParser.parse(sub)
 ```
 
-#### Subtitles.SrtParser/Subtitles.VttParser
+### Subtitles.SrtParser/Subtitles.VttParser
 
 **Subtitles.SrtParser.parse(subtitle)**
 **Subtitles.VttParser.parse(subtitle)**
@@ -85,11 +91,17 @@ Returns a parsed list of all cues in the subtitle in the following format:
 }
 ```
 
-#### Subtitles.SrtFormatter
+### Subtitles.SrtFormatter
 
 **Subtitles.SrtFormatter.format(subtitles)**
 
 Takes a list of `Subtitle` structs and returns an srt string
+
+### Subtitles.VttFormatter
+
+**Subtitles.SrtFormatter.format(subtitles)**
+
+Takes a list of `Subtitle` structs and returns a vtt string  
 
 ## Notes
 
