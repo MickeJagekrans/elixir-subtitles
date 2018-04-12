@@ -67,5 +67,22 @@ defmodule Subtitles.SrtParserSpec do
 
       it do: should eq expected()
     end
+
+    describe "with leading newline" do
+      let :sub, do: "\n1\n00:00:00,000 --> 00:00:02,040\nThis is the sub text\n\n"
+      let :expected, do: %Subtitle{
+        cues: [
+          %Cue{
+            from: ~T[00:00:00.000],
+            to: ~T[00:00:02.040],
+            parts: [
+              %CuePart{text_data: "This is the sub text"}
+            ]
+          }
+        ]
+      }
+
+      it do: should eq expected()
+    end
   end
 end
