@@ -1,4 +1,4 @@
-defmodule Subtitles.SrtFormatter do
+defmodule Subtitles.Srt.Formatter do
   def format(%Subtitle{cues: cues}) do
     cues
     |> Enum.with_index(1)

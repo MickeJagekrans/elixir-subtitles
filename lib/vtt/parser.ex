@@ -1,13 +1,15 @@
-defmodule Subtitles.VttParser do
+defmodule Subtitles.Vtt.Parser do
   @time_pattern ~r/\d{2}:\d{2}:\d{2}\.\d{3}/
   @unsupported_blocks ["WEBVTT", "NOTE", "REGION", "STYLE"]
 
   def parse(subtitle) do
-    subtitle
-    |> Utils.split_lines()
-    |> filter_unsupported_blocks()
-    |> parse_cues()
-    |> Subtitle.new()
+    subs = subtitle
+      |> Utils.split_lines()
+      |> filter_unsupported_blocks()
+      |> parse_cues()
+      |> Subtitle.new()
+
+    {:ok, subs}
   end
 
   defp filter_unsupported_blocks(blocks) do

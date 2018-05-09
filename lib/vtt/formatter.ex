@@ -1,4 +1,4 @@
-defmodule Subtitles.VttFormatter do
+defmodule Subtitles.Vtt.Formatter do
   def format(%Subtitle{cues: cues}), do: "WEBVTT\n\n" <> build_cues(cues)
 
   defp build_cues(sub) do
@@ -13,7 +13,7 @@ defmodule Subtitles.VttFormatter do
   end
 
   defp build_cue_header(%{from: from, to: to}) do
-    "#{Utils.format_time(from, ".")} --> #{Utils.format_time(to, ".")}\n" 
+    "#{Utils.format_time(from, ".")} --> #{Utils.format_time(to, ".")}\n"
   end
 
   defp build_cue_text(parts), do: parts |> Enum.map(& &1.text_data) |> Enum.join("\n")
