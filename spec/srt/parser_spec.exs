@@ -1,12 +1,12 @@
-defmodule Subtitles.SrtParserSpec do
+defmodule Subtitles.Srt.ParserSpec do
   use ESpec
 
   describe "#parse" do
-    subject do: sub() |> Subtitles.SrtParser.parse()
+    subject do: sub() |> Subtitles.Srt.Parser.parse()
 
     describe "valid sub" do
       let :sub, do: File.read!("spec/fixtures/test.srt")
-      let :expected, do: %Subtitle{
+      let :expected, do: {:ok, %Subtitle{
         cues: [
           %Cue{
             from: ~T[00:01:40.760],
@@ -46,14 +46,14 @@ defmodule Subtitles.SrtParserSpec do
             ]
           }
         ]
-      }
+      }}
 
       it do: should eq expected()
-    end 
+    end
 
     describe "crlf subtitle" do
       let :sub, do: "1\r\n00:00:00,000 --> 00:00:02,040\r\nThis is the sub text\r\n\r\n"
-      let :expected, do: %Subtitle{
+      let :expected, do: {:ok, %Subtitle{
         cues: [
           %Cue{
             from: ~T[00:00:00.000],
@@ -63,14 +63,14 @@ defmodule Subtitles.SrtParserSpec do
             ]
           }
         ]
-      }
+      }}
 
       it do: should eq expected()
     end
 
     describe "with leading newline" do
       let :sub, do: "\n1\n00:00:00,000 --> 00:00:02,040\nThis is the sub text\n\n"
-      let :expected, do: %Subtitle{
+      let :expected, do: {:ok, %Subtitle{
         cues: [
           %Cue{
             from: ~T[00:00:00.000],
@@ -80,7 +80,7 @@ defmodule Subtitles.SrtParserSpec do
             ]
           }
         ]
-      }
+      }}
 
       it do: should eq expected()
     end

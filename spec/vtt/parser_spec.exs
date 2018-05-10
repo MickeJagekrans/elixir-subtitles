@@ -1,12 +1,12 @@
-defmodule Subtitles.VttParserSpec do
+defmodule Subtitles.Vtt.ParserSpec do
   use ESpec
 
   describe "#parse" do
-    subject do: sub() |> Subtitles.VttParser.parse()
+    subject do: sub() |> Subtitles.Vtt.Parser.parse()
 
     describe "valid sub" do
       let :sub, do: File.read!("spec/fixtures/test.vtt")
-      let :expected, do: %Subtitle{
+      let :expected, do: {:ok, %Subtitle{
         cues: [
           %Cue{
             from: ~T[00:00:00.000],
@@ -40,14 +40,14 @@ defmodule Subtitles.VttParserSpec do
             ]
           }
         ]
-      }
+      }}
 
       it do: should eq expected()
     end
 
     describe "crlf subtitle" do
       let :sub, do: "WEBVTT\r\n\r\n00:00:00.000 --> 00:00:02.040\r\nThis is the sub text\r\n\r\n"
-      let :expected, do: %Subtitle{
+      let :expected, do: {:ok, %Subtitle{
         cues: [
           %Cue{
             from: ~T[00:00:00.000],
@@ -57,7 +57,7 @@ defmodule Subtitles.VttParserSpec do
             ]
           }
         ]
-      }
+      }}
 
       it do: should eq expected()
     end

@@ -1,10 +1,10 @@
-defmodule Subtitles.VttFormatterSpec do
+defmodule Subtitles.Srt.FormatterSpec do
   use ESpec
 
   describe "#format" do
-    subject do: sub() |> Subtitles.VttFormatter.format()
+    subject do: sub() |> Subtitles.Srt.Formatter.format()
 
-    let :expected, do: File.read!("spec/fixtures/format_test.vtt")
+    let :expected, do: File.read!("spec/fixtures/test.srt")
     let :sub, do: %Subtitle{
       cues: [
         %Cue{
@@ -52,3 +52,4 @@ defmodule Subtitles.VttFormatterSpec do
     end
   end
 end
+
