@@ -12,6 +12,7 @@ mycket längre än vi.
 De har många olika namn.
 Dave, Carl, Paul, Mike.
 
+
 4
 00:01:53,120 --> 00:01:54,880
 Den där heter Norbert.
@@ -19,4 +20,5 @@ Den där heter Norbert.
 5
 00:01:55,800 --> 00:01:57,200
 Han är en idiot.
+
 
